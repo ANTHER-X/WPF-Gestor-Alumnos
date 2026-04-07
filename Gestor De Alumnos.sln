@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35219.272
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gestor De Alumnos", "Gestor De Alumnos\Gestor De Alumnos.csproj", "{592C9276-0575-2A58-E81E-B5B94EBAC004}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib Bloc De Notas", "Lib Bloc De Notas\Lib Bloc De Notas.csproj", "{2E053FA5-D241-03B4-FB11-FA6BF9818EDC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución", "Elementos de la solución", "{D107F4C8-89CC-BEA8-D3D7-CA6B7733353D}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{592C9276-0575-2A58-E81E-B5B94EBAC004}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{592C9276-0575-2A58-E81E-B5B94EBAC004}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{592C9276-0575-2A58-E81E-B5B94EBAC004}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{592C9276-0575-2A58-E81E-B5B94EBAC004}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E053FA5-D241-03B4-FB11-FA6BF9818EDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E053FA5-D241-03B4-FB11-FA6BF9818EDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E053FA5-D241-03B4-FB11-FA6BF9818EDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E053FA5-D241-03B4-FB11-FA6BF9818EDC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5AF345A3-DD2C-4B1C-9371-9F0C519C5857}
+	EndGlobalSection
+EndGlobal

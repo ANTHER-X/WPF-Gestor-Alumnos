@@ -1,0 +1,25 @@
+﻿<!-- 
+ * Project: WPF-Gestor-Alumnos
+ * Author: ANTHER
+ * Licence: MIT
+ * GitHub: https://github.com/ANTHER-X/WPF-Gestor-Alumnos
+ -->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style TargetType="GroupBox" x:Key="GroupBoxBorderStyle">
+
+        <Setter Property="BorderBrush">
+
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF644949"/>
+                    <GradientStop Color="#FF9FA0A7" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+            
+        </Setter>
+        
+    </Style>
+    
+</ResourceDictionary>

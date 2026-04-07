@@ -1,0 +1,61 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0-windows10.0.26100.0</TargetFramework>
+    <RootNamespace>Gestor_De_Alumnos</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <OutputType>WinExe</OutputType>
+    <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
+	<SelfContained>true</SelfContained>
+	<ApplicationIcon>Imagenes-Iconos\Orquidea.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Imagenes-Iconos\Orquidea.ico" />
+    <None Remove="Imagenes-Iconos\DefaultStudentImage.png" />
+    <None Remove="Imagenes-Iconos\White-Rose.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.105.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="9.0.7" />
+    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlcipher" Version="2.1.11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Lib Bloc De Notas\Lib Bloc De Notas.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <EmbeddedResource Include="Imagenes-Iconos\DefaultStudentImage.png">
+		  <CustomToolNamespace>Gestor_Alumnos.Imagenes-Iconos</CustomToolNamespace>
+	  </EmbeddedResource>
+	  
+	  <Resource Include="Imagenes-Iconos\White-Rose.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  
+    <Resource Include="Imagenes-Iconos\Orquidea.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CustomToolNamespace>Gestor_De_Alumnos.Imagenes-Iconos</CustomToolNamespace>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+	
+</Project>

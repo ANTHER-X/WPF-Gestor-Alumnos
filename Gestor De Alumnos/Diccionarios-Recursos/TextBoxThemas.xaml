@@ -1,0 +1,134 @@
+﻿<!-- 
+ * Project: WPF-Gestor-Alumnos
+ * Author: ANTHER
+ * Licence: MIT
+ * GitHub: https://github.com/ANTHER-X/WPF-Gestor-Alumnos
+ -->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Estilo Retro para los TextBox De Solo Alumno -->
+    <Style TargetType="TextBox" x:Key="RetroTextBox">
+        
+        <!-- Propiedades-->
+        <Setter Property="Background" Value="#FFF4E1"/>
+        <Setter Property="Foreground" Value="#222222"/>
+        <Setter Property="BorderBrush" Value="#AE113078"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="FontFamily" Value="Consolas"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        
+        <!-- Plantilla para los eventos -->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    
+                    <!-- Dejamos los colores que pusimos-->
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="2.8">
+                        <ScrollViewer x:Name="PART_ContentHost" Margin="0"/>
+                    </Border>
+                    
+                    <ControlTemplate.Triggers>
+                        <!-- El caso de que el raton este sobre el-->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FCF3B6"/>
+                        </Trigger>
+                        
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Estilo colorido para los TextBox del visor de grupos -->
+    <Style TargetType="TextBox" x:Key="GrupoVisorTextBox">
+        <Setter Property="BorderBrush" Value="#584894"/>
+        <Setter Property="Background" Value="#4CA8E0"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="BorderThickness" Value="2.4"/>
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="AcceptsReturn" Value="true"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                
+                <ControlTemplate TargetType="TextBox">
+                    <Border CornerRadius="2.5"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ScrollViewer x:Name="PART_ContentHost" Margin="0"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="#6F55CF"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+                
+            </Setter.Value>
+        </Setter>
+        
+    </Style>
+
+    <!-- Para El TextBox de AnidaHoras -->
+    <Style TargetType="TextBox" x:Key="TextBoxLlamativoSuave">
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="BorderThickness" Value="1.8"/>
+
+        <!-- Le damos un degradado bonito para el fondo y para el borde -->
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                    <GradientStop Color="#FF769FBA"/>
+                    <GradientStop Color="#FFBFA3C8" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="BorderBrush">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                    <GradientStop Color="#736A6A"/>
+                    <GradientStop Color="#FF61C8EB" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+
+        <!-- Para la toma de acciones sobre el control, no cambiamos mucho -->
+        <Setter Property="Template">
+            <Setter.Value>
+
+                <ControlTemplate TargetType="TextBox">
+                    <Border CornerRadius="8"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ScrollViewer x:Name="PART_ContentHost" Margin="0"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="#DFE4E6"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+</ResourceDictionary>

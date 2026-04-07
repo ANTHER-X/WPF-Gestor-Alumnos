@@ -1,0 +1,188 @@
+﻿<!-- 
+ * Project: WPF-Gestor-Alumnos
+ * Author: ANTHER
+ * Licence: MIT
+ * GitHub: https://github.com/ANTHER-X/WPF-Gestor-Alumnos
+ -->
+<Window x:Class="Gestor_De_Alumnos.Window_Add_Alumno.WNDAddAlumno"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gestor_De_Alumnos.Window_Add_Alumno"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize"
+        Title="WNDAddAlumno" Height="500" Width="589" Background="#FF61C8EB" Icon="/Imagenes-Iconos/Orquidea.ico">
+
+    <!--Anidamos los Diccionarios-Recursos que necesitaremos-->
+    <Window.Resources>
+
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="/Gestor De Alumnos;component/Diccionarios-Recursos/TextBoxThemas.xaml"/>
+                <ResourceDictionary Source="/Gestor De Alumnos;component/Diccionarios-Recursos/ButtonsThemas.xaml"/>
+
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+
+    </Window.Resources>
+
+
+    <!-- Espacio principal -->
+    <Grid Cursor="Hand">
+
+        <!-- Subdividimos para poner las 3 capas -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="210"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- En la primer capa estaran los datos personales y la fotografia -->
+        <Grid Grid.Row="0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="420"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Este GroupBox contendra los controles para insertar los datos Personales-->
+            <GroupBox Name="GRPBXDataAlumno" Header="Personal Data" Grid.Column="0" Margin="3">
+
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="137"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <TextBox Style="{StaticResource RetroTextBox}" Name="TXTName" FontSize="14" HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="0" Margin="8"/>
+                    <Label Content="Nombre" FontSize="13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="0"/>
+
+                    <TextBox Style="{StaticResource RetroTextBox}" Name="TXTApellidos" FontSize="14" HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="8"/>
+                    <Label Content="Apellidos" FontSize="13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="1"/>
+
+                    <TextBox Style="{StaticResource RetroTextBox}" Name="TXTTelefono" FontSize="14" PreviewKeyDown="TXTTelefono_PreviewKeyDown" PreviewTextInput="TXTTelefono_PreviewTextInput" TextChanged="TXTTelefono_TextChanged" HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="2" Margin="8"/>
+                    <Label Content="Num. Telefonico (+52)" FontSize="13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="2"/>
+
+                    <DatePicker Name="DTPKFechaNacimiento" Text="2010-01-01" SelectedDateChanged="DTPKFechaNacimiento_SelectedDateChanged" SelectedDateFormat="Short" DisplayDate="2010-01-01" Grid.Column="1" Grid.Row="3" Margin="8"/>
+                    <Label Content="Fecha De Nacimiento" FontSize="13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="3"/>
+
+                </Grid>
+
+            </GroupBox>
+
+            <!--Controles para la Fotografia-->
+            <GroupBox Header="Student Photo" Grid.Column="1" Margin="3">
+
+                <!--El GroupBox solo tendra un color distinto asi que no hace falta hacer un Diccionario de Recursos (Lo copiamos al otro)-->
+                <GroupBox.Background>
+                    <RadialGradientBrush>
+                        <GradientStop Color="#FFFDFCFC"/>
+                        <GradientStop Color="#FF61C8EB" Offset="1.24"/>
+                    </RadialGradientBrush>
+                </GroupBox.Background>
+
+                <Grid>
+
+                    <Button Name="BTNAddImage" Style="{StaticResource BotonRetro}" Click="BTNAddImage_Click"  Content="Cambiar Imagen" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="24" Width="125"/>
+                    <Image Name="IMGStudent" Height="148" Margin="6" VerticalAlignment="Top" />
+
+                </Grid>
+
+            </GroupBox>
+
+        </Grid>
+        
+        <!-- La segunda fila tendra los datos del escolares-->
+        <GroupBox Header="School Data" Grid.Row="1" Margin="3">
+
+            <Grid>
+                <!-- Subdiviciones  -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="52*"/>
+                    <ColumnDefinition Width="75*"/>
+                </Grid.ColumnDefinitions>
+                
+                <!--Controles Escolares-->
+                <TextBox Style="{StaticResource RetroTextBox}" Name="TXTGrupo"  FontSize="14" PreviewTextInput="TXTGrupo_PreviewTextInput" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="92,17,0,0" VerticalAlignment="Top" Width="144" Height="23" Grid.ColumnSpan="2" Grid.Column="1"/>
+                <Label Content="Grupo" FontSize="13" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="37,13,0,0" VerticalAlignment="Top" Width="70" Grid.ColumnSpan="2"/>
+
+                <TextBox Style="{StaticResource RetroTextBox}" Name="TXTMatricula" FontSize="14" PreviewTextInput="TXTMatricula_PreviewTextInput" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="146,17,0,0" VerticalAlignment="Top" Width="144" Height="23" Grid.Column="2"/>
+                <Label Content="Matricula" FontSize="13" HorizontalAlignment="Left" Margin="50,13,0,0" VerticalAlignment="Top" Width="66" Grid.Column="2"/>
+
+                <Label Content="Turno"  FontSize="13" HorizontalAlignment="Left" Margin="61,88,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+                <RadioButton Name="Mat" GroupName="Turno" Content="M" Checked="Mat_Checked" HorizontalAlignment="Left" Margin="146,93,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+                <RadioButton Name="Ves" GroupName="Turno" Content="V" Checked="Ves_Checked" HorizontalAlignment="Left" Margin="251,93,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+
+                <TextBox Style="{StaticResource RetroTextBox}" Name="TXTCapacitacion" FontSize="14" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="92,54,0,0" VerticalAlignment="Top" Width="144" Height="24" Grid.ColumnSpan="2" Grid.Column="1"/>
+                <Label Content="Capacitacion (OPC)" FontSize="13" HorizontalAlignment="Left" Margin="12,47,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+
+                <TextBox Style="{StaticResource RetroTextBox}" Name="TXTBachillerato" FontSize="14" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="146,55,0,0" VerticalAlignment="Top" Width="144" Height="23" Grid.Column="2"/>
+                <Label Content="Bachillerato (OPC)" FontSize="13" HorizontalAlignment="Left" Margin="33,51,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+
+                <TextBox Style="{StaticResource RetroTextBox}" Name="TXTClub" FontSize="14" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="92,93,0,0" VerticalAlignment="Top" Width="144" Height="22" Grid.ColumnSpan="2" Grid.Column="1"/>
+                <Label Content="Club (OPC)" FontSize="13" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="23,87,0,0" VerticalAlignment="Top" Width="78" Grid.ColumnSpan="2"/>
+
+            </Grid>
+
+        </GroupBox>
+        
+        <!-- La ultima fila contendra los datos del servicio social asi como los botones de acciones -->
+        <Grid Grid.Row="2">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="420"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Controles del Servicio Social-->
+            <GroupBox Header="Servicio Social" Grid.Column="0" Margin="3">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Horas de servicio iniciales -->
+                    <StackPanel Grid.Column="0">
+
+                        <Label Content="H.Serv.Soc. Inicial" FontSize="13" HorizontalContentAlignment="Center" Margin="3"/>
+                        <TextBox Style="{StaticResource RetroTextBox}" Name="TXTHorasServicio" FontSize="14" PreviewTextInput="TXTHorasServicio_PreviewTextInput" HorizontalContentAlignment="Center" TextWrapping="Wrap" Width="190" Text="0" Margin="5"/>
+
+                    </StackPanel>
+                    
+                    <!-- Nombre del profesor que da horas -->
+                    <StackPanel Grid.Column="1">
+                        <Label Content="Profesor Que Libera (OPC)" FontSize="13" HorizontalAlignment="Center" Margin="3"/>
+                        <TextBox Style="{StaticResource RetroTextBox}" Name="TXTMaestroServicioSocial" FontSize="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextWrapping="Wrap" Width="170" Margin="5"/>
+                    </StackPanel>
+                </Grid>
+
+            </GroupBox>
+
+            <!-- Botones de acciones -->
+            <StackPanel Grid.Column="1" Margin="4">
+
+                <Button Name="BTNADD" Style="{StaticResource BotonRetro}" BorderThickness="1.5" Content="ADD Alumno" Click="BTNADD_Click" FontSize="15" Height="32" Margin="10"/>
+                <Button Name="BTNSalir" Style="{StaticResource BotonRetro}" Content="SALIR" Click="BTNSalir_Click" BorderThickness="1.5" FontSize="15" Height="32" Margin="10"/>
+
+            </StackPanel>
+
+        </Grid>
+
+    </Grid>
+</Window>

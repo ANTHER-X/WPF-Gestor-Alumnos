@@ -1,0 +1,8 @@
+*.vs/
+*build/
+*obj/
+*.user
+*x64/
+*Properties/PublishProfiles/
+*.pubxml
+*bin/

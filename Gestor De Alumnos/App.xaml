@@ -1,0 +1,15 @@
+﻿<!-- 
+ * Project: WPF-Gestor-Alumnos
+ * Author: ANTHER
+ * Licence: MIT
+ * GitHub: https://github.com/ANTHER-X/WPF-Gestor-Alumnos
+ -->
+<Application x:Class="Gestor_De_Alumnos.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Gestor_De_Alumnos"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+         <!-- No se usa de momento :/-->
+    </Application.Resources>
+</Application>

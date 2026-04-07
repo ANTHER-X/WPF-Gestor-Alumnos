@@ -1,0 +1,50 @@
+﻿<!-- 
+ * Project: WPF-Gestor-Alumnos
+ * Author: ANTHER
+ * Licence: MIT
+ * GitHub: https://github.com/ANTHER-X/WPF-Gestor-Alumnos
+ -->
+<Window x:Class="Lib_Bloc_De_Notas.Notas"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lib_Bloc_De_Notas"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        ResizeMode="CanMinimize"
+        Title="Tiny Bloc De Notas" Height="420" Width="290" PreviewKeyDown="TXBMain_PreviewKeyDown" Icon="/Lib Bloc De Notas;component/MainIcon.png"
+        >
+
+    <Grid>
+
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                <Menu>
+                    <MenuItem Header="Archivo">
+                        <MenuItem Name="MIBTNSave" InputGestureText="Ctrl+S" Header="Save" Click="MIBTNSave_Click"/>
+                        <MenuItem Name="MIBTNSaveAs" Header="SaveAs" Click="MIBTNSaveAs_Click"/>
+                        <MenuItem Name="MIBTNLoad" InputGestureText="Ctrl+L" Header="Load" Click="MIBTNLoad_Click"/>
+                    </MenuItem>
+
+                    <MenuItem Header="Font">
+                        <MenuItem Header="Arial" FontFamily="Arial" Click="CambiarFuente_Click"/>
+                        <MenuItem Header="Calibri" FontFamily="Calibri" Click="CambiarFuente_Click"/>
+                        <MenuItem Header="Consolas" FontFamily="Consolas" Click="CambiarFuente_Click"/>
+                        <MenuItem Header="Courier New" FontFamily="Courier New" Click="CambiarFuente_Click"/>
+                        <MenuItem Header="Georgia" FontFamily="Georgia" Click="CambiarFuente_Click"/>
+                        <MenuItem Header="Lucida Console" FontFamily="Lucida Console" Click="CambiarFuente_Click"/>
+                        <MenuItem Header="Segoe UI" FontFamily="Segoe UI" Click="CambiarFuente_Click"/>
+                        <MenuItem Header="Tahoma" FontFamily="Tahoma" Click="CambiarFuente_Click"/>
+                        <MenuItem Header="Times New Roman" FontFamily="Times New Roman" Click="CambiarFuente_Click"/>
+                        <MenuItem Header="Verdana" FontFamily="Verdana" Click="CambiarFuente_Click"/>
+                    </MenuItem>
+
+                </Menu>
+            </StackPanel>
+            
+            <TextBox Name="TXBMain" FontSize="12" AcceptsReturn="True" TextWrapping="Wrap"/>
+        </DockPanel>
+
+    </Grid>
+</Window>

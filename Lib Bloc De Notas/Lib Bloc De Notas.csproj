@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0-windows7.0</TargetFramework>
+    <RootNamespace>Lib_Bloc_De_Notas</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Icono Notas.jpg" />
+    <None Remove="MainIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="MainIcon.png" />
+  </ItemGroup>
+
+</Project>

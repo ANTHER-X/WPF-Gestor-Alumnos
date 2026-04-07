@@ -1,0 +1,124 @@
+﻿<!-- 
+ * Project: WPF-Gestor-Alumnos
+ * Author: ANTHER
+ * Licence: MIT
+ * GitHub: https://github.com/ANTHER-X/WPF-Gestor-Alumnos
+ -->
+<Window x:Class="Gestor_De_Alumnos.Window_See_Student.WNDSeeStudent"
+        Name="WNDSeeStudentLocal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gestor_De_Alumnos.Window_See_Student"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize"
+        Background="#FFA0A4AC"
+        Title="Visualizador" Height="460" Width="435" Icon="/Imagenes-Iconos/Orquidea.ico">
+
+    <Window.Resources>
+
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="/Gestor de Alumnos;component/Diccionarios-Recursos/ButtonsThemas.xaml"/>
+                <ResourceDictionary Source="/Gestor de Alumnos;component/Diccionarios-Recursos/GroupBoxThemas.xaml"/>
+
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+
+    </Window.Resources>
+
+    <Grid x:Name="GridMain">
+        <GroupBox Header="Solo Alumno" Style="{StaticResource GroupBoxBorderStyle}" Margin="0,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="413" Height="202">
+
+            <Grid>
+
+                <ComboBox Name="CBGrupoAlumno1" SelectionChanged="CBGrupoAlumno1_SelectionChanged"  MaxDropDownHeight="145" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="123"/>
+                <ComboBox Name="CBNombreAlumno" MaxDropDownHeight="145" HorizontalAlignment="Left" Margin="138,10,0,0" VerticalAlignment="Top" Width="154"/>
+
+                <Button Name="BTNSeeAStudent" Style="{StaticResource BotonSuave}" Click="BTNSeeAStudent_Click" Content="Ver Alumno" HorizontalAlignment="Left" Margin="297,11,0,0" VerticalAlignment="Top" Height="30" Width="94"/>
+
+                <Button Name="BTNAddHorasStudent" Style="{StaticResource BotonSuave}" Click="BTNAddHorasStudent_Click" HorizontalAlignment="Left" Margin="297,46,0,0" VerticalAlignment="Top" Height="37" Width="94">
+
+                    <TextBlock TextWrapping="Wrap" TextAlignment="Center">
+                        Add Horas Servicio
+                    </TextBlock>
+
+                </Button>
+                <Button Name="BTNChangeStats" Style="{StaticResource BotonSuave}" Click="BTNChangeStats_Click" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="297,88,0,0" VerticalAlignment="Top" Height="36" Width="94">
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap">
+                        Cambiar Estadisticas
+                    </TextBlock>
+
+                </Button>
+
+                <Button Name="BTNEliminarStudent" Click="BTNEliminarStudent_Click" Style="{StaticResource BotonSuave}" HorizontalAlignment="Left" Margin="297,129,0,0" VerticalAlignment="Top" Height="40" Width="94">
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap">
+                        Eliminar Estudiante
+                    </TextBlock>
+                </Button>
+
+            </Grid>
+
+        </GroupBox>
+
+        <GroupBox Header="Ver Grupo" Margin="10,217,157,10" Style="{StaticResource GroupBoxBorderStyle}">
+            <Grid>
+                <ComboBox Name="CBSeeGroup" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="125" Height="23"/>
+                <Button Name="BTNVerGrupo" Style="{StaticResource BotonSuave}" Click="BTNVerGrupo_Click" Content="Ver Grupo" HorizontalAlignment="Left" Margin="144,10,0,0" VerticalAlignment="Top" Height="37" Width="97"/>
+                <Button Name="BTNVerGrupoSoloHoras" Style="{StaticResource BotonSuave}" Click="BTNVerGrupoSoloHoras_Click" HorizontalAlignment="Left" Margin="144,52,0,0" VerticalAlignment="Top" Height="37" Width="97">
+                    <TextBlock TextWrapping="Wrap">
+                            Solo Horas (Ver Grupo)
+                    </TextBlock>
+                </Button>
+                <Button x:Name="BTNCreaExcelGrupo" Click="BTNCreaExcelGrupo_Click" Content="Crear Excel" Style="{StaticResource BotonSuave}" HorizontalAlignment="Left" Margin="144,139,0,0" VerticalAlignment="Top" Height="32" Width="97"/>
+
+                <Button Name="BTNModificarGrupo" Click="BTNModificarGrupo_Click" Style="{StaticResource BotonSuave}" HorizontalAlignment="Left" Margin="144,94,0,0" VerticalAlignment="Top" Height="38" Width="97">
+                    <TextBlock TextWrapping="Wrap" TextAlignment="Center"><Run Text="Modificar Grupo"/></TextBlock>
+                </Button>
+
+            </Grid>
+
+        </GroupBox>
+
+        <GroupBox Header="Ver Todo" Margin="278,217,10,10" Style="{StaticResource GroupBoxBorderStyle}" Grid.ColumnSpan="2">
+
+            <Grid>
+                <StackPanel>
+
+                    <Button Name="BTNSeeAllGroup" Style="{StaticResource BotonSuave}" Click="BTNSeeAllGroup_Click" Margin="0,9,0,0">
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center">
+                            Ver Todos Los Alumnos
+                        </TextBlock>
+                    </Button>
+                    <Button Name="BTNSeeAllGroupOnlyHoras" Style="{StaticResource BotonSuave}" Click="BTNSeeAllGroupOnlyHoras_Click">
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center">
+                            Solo horas servicio (All)
+                        </TextBlock>
+                    </Button>
+                    <Button Name="BTNModificadorTotal" Click="BTNModificadorTotal_Click" Style="{StaticResource BotonSuave}">
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center">
+                            Modificar Todos los Alumnos
+                        </TextBlock>
+                    </Button>
+                    <Button x:Name="BTNCreaExcelAllAlumnos" Click="BTNCreaExcelAllAlumnos_Click" Style="{StaticResource BotonSuave}">
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center">
+                            Crear Excel Todos Alumnos
+                        </TextBlock>
+                    </Button>
+
+                </StackPanel>
+
+
+            </Grid>
+
+        </GroupBox>
+
+
+
+    </Grid>
+</Window>

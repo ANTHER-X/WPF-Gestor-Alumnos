@@ -1,0 +1,142 @@
+﻿<!-- 
+ * Project: WPF-Gestor-Alumnos
+ * Author: ANTHER
+ * Licence: MIT
+ * GitHub: https://github.com/ANTHER-X/WPF-Gestor-Alumnos
+ -->
+<UserControl x:Class="Gestor_De_Alumnos.Window_See_Student.User_Controls.VerAlumno"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Gestor_De_Alumnos.Window_See_Student.User_Controls"
+             mc:Ignorable="d" 
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
+              Background="#FF61C8EB" Height="376">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Gestor de Alumnos;component/Diccionarios-Recursos/ButtonsThemas.xaml"/>
+    </UserControl.Resources>
+    
+    <Grid>
+
+        <StackPanel>
+
+            <Grid Margin="10">
+                <!-- Definimos 4 filas y 3 columnas -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                
+                <!--Subdividimos-->
+                <Grid Grid.Column="1" Grid.Row="2">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Label Content="Edad" Grid.Row="0"/>
+                    <Label Name="LBEdad" Content="Edad" Grid.Row="1" Background="#FF8592B9" BorderThickness="2,2,2,2" BorderBrush="#FFD8F1E3"></Label>
+
+                    <!--Matricula, ya iría acomodado y no se veria un gran espacio vertical, igual con Grupo-->
+                    <Label Content="Matricula" Grid.Row="2"/>
+                    <Label Name="LBMatricula" Content=" Matricula" Grid.Row="3" Background="#FF8592B9" BorderThickness="2,2,2,2" BorderBrush="#FFD8F1E3"/>
+
+                </Grid>
+
+                <Grid Grid.Column="0" Grid.Row="2">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Label Content="Telefono" Grid.Row="0"/>
+                    <Label Name="LBTelefono" Content="Telefono" Grid.Row="1" Background="#FF8592B9" BorderThickness="2,2,2,2" BorderBrush="#FFD8F1E3"></Label>
+
+                    <Label Content="Grupo" Grid.Row="2"/>
+                    <Label Name="LBGrupo" Content=" Grupo" Grid.Row="3" Background="#FF8592B9" BorderThickness="2,2,2,2" BorderBrush="#FFD8F1E3"/>
+
+                </Grid>
+                
+
+                <!--Personal-->
+                <Label Content="Nombre" Grid.Row="0" Grid.Column="0"/>
+                <Label Name="LBName" Content="Name" Grid.Row="1" Grid.Column="0" Background="#FF8592B9" BorderThickness="2,2,2,2" BorderBrush="#FFD8F1E3"/>
+
+                <Label Content="Apellido" Grid.Row="0" Grid.Column="1"/>
+                <Label Name="LBApellido" Content="Apellido" Grid.Row="1" Grid.Column="1" Background="#FF8592B9" BorderThickness="2,2,2,2" BorderBrush="#FFD8F1E3"></Label>
+
+                <Label Content="FechaNacimiento" Grid.Row="0" Grid.Column="2"/>
+                <Label Name="LBFechaNacim" Content="FechaNacimiento" Grid.Row="1" Grid.Column="2" Background="#FF8592B9" BorderThickness="2,2,2,2" BorderBrush="#FFD8F1E3"></Label>
+
+                
+                <!--imagen del Alumno-->
+                <Image Name="IMGAlumno" Grid.Column="2" Grid.Row="2" Height="110" Width="106"/>
+
+                <!--Escuela-->
+                <Label Content="Turno" Grid.Row="4" Grid.Column="1"/>
+                <Label Name="LBTurno" Content=" Turno " Grid.Column="1" Grid.Row="5" Background="#FF8592B9" BorderThickness="2,2,2,2" BorderBrush="#FFD8F1E3"/>
+
+                <Label Content="Capacitacion" Grid.Row="4" Grid.Column="0"/>
+                <Label Name="LBCapacitacion" Content=" Capacitacion " Grid.Column="0" Grid.Row="5" Background="#FF8592B9" BorderThickness="2,2,2,2" BorderBrush="#FFD8F1E3"/>
+
+                <Label Content="Club" HorizontalContentAlignment="Center" Grid.Row="4" Grid.Column="2"/>
+                <Label Name="LBClub" Content="Club" Grid.Column="2" Grid.Row="5" Background="#FF8592B9" BorderThickness="2,2,2,2" BorderBrush="#FFD8F1E3"/>
+
+            </Grid>
+
+
+            <Grid Margin="10">
+
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+
+                </Grid.RowDefinitions>
+
+                <!--Mas de escuela pero con un orden distinto, para abarcar todo-->
+                <Label Content="Bachillerato" HorizontalContentAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+                <Label Name="LBBach" Content=" Bachillerato " Grid.Column="0" Grid.Row="1" Background="#FF8592B9" BorderThickness="2,2,2,2" BorderBrush="#FFD8F1E3"/>
+
+                <Label Content="Profesor Que Libera" Grid.Row="0" Grid.Column="1"/>
+                <Label Name="LBProf" Content="ProfDeServicioSocial" Grid.Row="1" Grid.Column="1" Background="#FF8592B9" BorderThickness="2,2,2,2" BorderBrush="#FFD8F1E3"/>
+
+                <Label Content="Horas De Servicio Social" Grid.Row="2" Grid.Column="0"/>
+                <Label Name="LBHServ" Content="HorasServicioSocial" Grid.Row="3" Grid.Column="0" Background="#FF8592B9" BorderThickness="2,2,2,2" BorderBrush="#FFD8F1E3"/>
+                
+                <Button Name="Salir" Style="{StaticResource BotonSuave}" FontSize="13" Click="Salir_Click" Content="Salir del Visor" Grid.Column="1" Grid.Row="2" Margin="4"/>
+                <Button Name="BTNExportaExcel" Style="{StaticResource BotonSuave}" FontSize="13" Click="BTNExportaExcel_Click" Content="Exportar a Excel" Grid.Column="1" Grid.Row="3" Margin="5"/>
+
+            </Grid>
+
+        </StackPanel>
+
+    </Grid>
+
+</UserControl>

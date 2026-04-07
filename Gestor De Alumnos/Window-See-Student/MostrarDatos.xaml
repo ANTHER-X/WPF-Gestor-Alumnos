@@ -1,0 +1,22 @@
+﻿<!-- 
+ * Project: WPF-Gestor-Alumnos
+ * Author: ANTHER
+ * Licence: MIT
+ * GitHub: https://github.com/ANTHER-X/WPF-Gestor-Alumnos
+ -->
+<Window x:Class="Gestor_De_Alumnos.Window_See_Student.MostrarDatos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gestor_De_Alumnos.Window_See_Student"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize"
+        mc:Ignorable="d"
+        xmlns:Controles="clr-namespace:Gestor_De_Alumnos.Window_See_Student.User_Controls"
+        Title="MostrarDatos" Icon="/Imagenes-Iconos/Orquidea.ico" Height="420" Width="400" Closing="Window_Closing">
+    <ContentControl  Name="ContCtrlMain">
+
+
+    </ContentControl>
+</Window>

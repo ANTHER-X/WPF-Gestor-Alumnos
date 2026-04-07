@@ -1,0 +1,67 @@
+﻿<!-- 
+ * Project: WPF-Gestor-Alumnos
+ * Author: ANTHER
+ * Licence: MIT
+ * GitHub: https://github.com/ANTHER-X/WPF-Gestor-Alumnos
+ -->
+<UserControl x:Class="Gestor_De_Alumnos.Window_See_Student.User_Controls.VerGrupos"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Gestor_De_Alumnos.Window_See_Student.User_Controls"
+             xmlns:StyleListView="clr-namespace:Gestor_De_Alumnos.Window_See_Student.User_Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="620">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Gestor de Alumnos;component/Diccionarios-Recursos/TextBoxThemas.xaml"/>
+                <ResourceDictionary Source="/Gestor de Alumnos;component/Diccionarios-Recursos/LabelThemas.xaml"/>
+                <ResourceDictionary Source="/Gestor de Alumnos;component/Diccionarios-Recursos/ButtonsThemas.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <Grid>
+        <ListView Name="LSTVMain" VirtualizingStackPanel.IsVirtualizing="True"
+          VirtualizingStackPanel.VirtualizationMode="Recycling">
+            
+            <!-- Damos los colores del fondo -->
+            <ListView.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#FF6F37C0" Offset="0.2"/>
+                    <GradientStop Color="#FF3C86C8" Offset="0.9"/>
+                </LinearGradientBrush>
+            </ListView.Background>
+
+            <!--Agregamos plantillas a los recursos del ListView-->
+            <ListView.Resources>
+                
+                <!--Plantilla del titulo de grupo-->
+                <DataTemplate x:Key="Titulo">
+                    <Label Content="{Binding}" FontSize="16"/>
+                </DataTemplate>
+
+                <!--Plantilla para ver a los alumnos-->
+                <DataTemplate x:Key="Alumno">
+                    <local:ListViewSeeStudent/>
+                </DataTemplate>
+
+
+                <!--Selector de las plantillas-->
+                <local:SelectorTemplateListView x:Key="SelectorPlantillas"
+                                TituloTemplate="{StaticResource Titulo}"
+                                AlumnoTemplate="{StaticResource Alumno}"/>
+
+            </ListView.Resources>
+
+            <!--Cargamos el ItemTemplateSelector (aqui ya que si es antes, da error ya que aun no se crea)-->
+            <ListView.ItemTemplateSelector>
+                <StaticResource ResourceKey="SelectorPlantillas"/>
+            </ListView.ItemTemplateSelector>
+
+        </ListView>
+    </Grid>
+</UserControl>
