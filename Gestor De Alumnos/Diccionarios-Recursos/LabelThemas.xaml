@@ -27,23 +27,120 @@
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                             RecognizesAccessKey="True"/>
                     </Border>
-                    
+
                     <!-- Si el raton pasa por el, cambiamos el color de fonndo -->
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" Value="#6F55CF"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
-                    
+
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
 
+    </Style>
+
+    <!-- Estilo para los creditos -->
+    <Style TargetType="Label" x:Key="LBCreditsData">
+        <!-- Parametros base -->
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="BorderThickness" Value="2.4"/>
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+
+        <Setter Property="BorderBrush">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="1.8, 1.4" StartPoint="0.1,1.2">
+                    <GradientStop Color="#FFC29E6E"/>
+                    <GradientStop Color="#FF55B8A3" Offset="0.5"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0.1,0" StartPoint="1.2,0.6">
+                    <GradientStop Color="#FF3CC97D"/>
+                    <GradientStop Color="#FFBAF35C" Offset="1.3"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        
+        <!-- Tocamos su plantilla para manipular sus acciones -->
+        <Setter Property="Template">
+            <Setter.Value>
+                <!-- Dejamos los estilos que le pusimos asi como la forma de presentacion del texto -->
+                <ControlTemplate TargetType="Label">
+                    <Border CornerRadius="14"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    RecognizesAccessKey="True"/>
+                    </Border>
+
+                    <!-- Si el raton pasa por el, cambiamos el color de fonndo -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.1,0" StartPoint="0.9,1.5">
+                                        <GradientStop Color="#FF0BFF7B"/>
+                                        <GradientStop Color="#FF9BF702" Offset="1.3"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
 
     </Style>
+
+    <Style TargetType="Label" x:Key="LBCredits">
+        <!-- Parametros base -->
+        <Setter Property="BorderBrush" Value="#FFB58787"/>
+        <Setter Property="Background" Value="#FF85A76D"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="BorderThickness" Value="2.4"/>
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+
+        <!-- Tocamos su plantilla para manipular sus acciones -->
+        <Setter Property="Template">
+            <Setter.Value>
+                <!-- Dejamos los estilos que le pusimos asi como la forma de presentacion del texto -->
+                <ControlTemplate TargetType="Label">
+                    <Border CornerRadius="8"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    RecognizesAccessKey="True"/>
+                    </Border>
+
+                    <!-- Si el raton pasa por el, cambiamos el color de fonndo -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF8AC362"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
 
 </ResourceDictionary>

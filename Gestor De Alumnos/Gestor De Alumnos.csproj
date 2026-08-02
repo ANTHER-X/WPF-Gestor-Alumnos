@@ -1,5 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
+	
+  <PropertyGroup>
+	<Version>1.1.0</Version>
+  </PropertyGroup>
+	
   <PropertyGroup>
     <TargetFramework>net9.0-windows10.0.26100.0</TargetFramework>
     <RootNamespace>Gestor_De_Alumnos</RootNamespace>
@@ -11,11 +15,11 @@
 	<SelfContained>true</SelfContained>
 	<ApplicationIcon>Imagenes-Iconos\Orquidea.ico</ApplicationIcon>
   </PropertyGroup>
-
+	
   <ItemGroup>
+    <None Remove="Imagenes-Iconos\alumno.png" />
     <None Remove="Imagenes-Iconos\Orquidea.ico" />
-    <None Remove="Imagenes-Iconos\DefaultStudentImage.png" />
-    <None Remove="Imagenes-Iconos\White-Rose.png" />
+    <None Remove="Imagenes-Iconos\rosa.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,18 +33,16 @@
   </ItemGroup>
 
   <ItemGroup>
-	  <EmbeddedResource Include="Imagenes-Iconos\DefaultStudentImage.png">
-		  <CustomToolNamespace>Gestor_Alumnos.Imagenes-Iconos</CustomToolNamespace>
+	  <EmbeddedResource Include="Imagenes-Iconos\alumno.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </EmbeddedResource>
-	  
-	  <Resource Include="Imagenes-Iconos\White-Rose.png">
-		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  <Resource Include="Imagenes-Iconos\rosa.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
 	  
-    <Resource Include="Imagenes-Iconos\Orquidea.ico">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CustomToolNamespace>Gestor_De_Alumnos.Imagenes-Iconos</CustomToolNamespace>
-    </Resource>
+    <Content Include="Imagenes-Iconos\Orquidea.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

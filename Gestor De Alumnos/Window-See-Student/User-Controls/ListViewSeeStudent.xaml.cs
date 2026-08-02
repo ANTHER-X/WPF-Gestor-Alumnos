@@ -108,7 +108,8 @@ namespace Gestor_De_Alumnos.Window_See_Student.User_Controls
                 LBBach.Content = $"Bachillerato: {al.bachillerato}";
                 LBHorasServ.Content = $"Horas De Servicio Social:\nTotal Horas: {al.horasServicioSocial}";
 
-                IMGAlumno.Source = StudentData.CargaImage(al.RutaImagen);
+                string path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, al.RutaImagen);
+                IMGAlumno.Source = StudentData.CargaImage((System.IO.File.Exists(path)) ? (al.RutaImagen) : (App.RelativeStudentPath));
             }
         }
 

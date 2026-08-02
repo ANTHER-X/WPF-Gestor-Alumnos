@@ -46,7 +46,7 @@ namespace Gestor_De_Alumnos.Guardar_Datos
             BitmapImage BM = new BitmapImage();
             BM.BeginInit();
 
-            BM.UriSource = new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, RutaArchivo), UriKind.Absolute);
+            BM.UriSource = new Uri(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, RutaArchivo), UriKind.Absolute);
 
             BM.EndInit();
             return BM;
@@ -55,9 +55,9 @@ namespace Gestor_De_Alumnos.Guardar_Datos
         static public void CopiaImagen(Alumno Al, string URIOriginal, string rutaEXE, string Carpeta, Image? IMG = null)
         {
             //si la imagen es la que esta por defecto, esa la dejamos, asi nos podemos decemas de MB
-            if (URIOriginal == Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ImagenesEstudiantes", "DefaultStudentImage.png"))
+            if (URIOriginal == Path.Combine(AppDomain.CurrentDomain.BaseDirectory, App.RelativeStudentPath))
             {
-                Al.RutaImagen = "ImagenesEstudiantes/DefaultStudentImage.png";
+                Al.RutaImagen = App.RelativeStudentPath;
                 return;
             }
 
