@@ -47,7 +47,9 @@ namespace Gestor_De_Alumnos.Window_See_Student.User_Controls
         //Actualizamos o mostramos los datos del alumno dando los datos a los controles
         private void MuestraDatosAlumno(Alumno Al)
         {
-            IMGCambiaImagen.Source = StudentData.CargaImage(Al.RutaImagen);
+            // Ruta de imagen
+            string path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Al.RutaImagen);
+            IMGCambiaImagen.Source = StudentData.CargaImage( (System.IO.File.Exists(path)) ? (Al.RutaImagen) : (App.RelativeStudentPath));
             TXBNombre.Text = Al.name;
             TXBApellidos.Text = Al.apellidos;
             TXBTelefono.Text = Al.Telefono;
@@ -120,7 +122,7 @@ namespace Gestor_De_Alumnos.Window_See_Student.User_Controls
                 //Tambien nos aseguramos que la ruta de la imagen si exista para evitar problemas en caso de que no ponga nada
                 string? aux = (IMGCambiaImagen.Source as BitmapImage)?.UriSource.LocalPath;
                 StudentData.CopiaImagen(Al,
-                    (aux == null) ? (System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ImagenesEstudiantes", "DefaultStudentImage.png")) : (aux)
+                    (aux == null) ? (System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, App.RelativeStudentPath)) : (aux)
                     , AppDomain.CurrentDomain.BaseDirectory, "ImagenesEstudiantes");
 
                 //y llamamos a actualizar la base de datos

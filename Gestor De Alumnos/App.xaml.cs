@@ -13,7 +13,9 @@ namespace Gestor_De_Alumnos
 {
     public partial class App : Application
     {
-        //Aun no eh usado esto, quiza despues si hay fallos con el guarado de datos.
+        // Pues si lo use, pero no para el guardado de datos
+
+        static public string RelativeStudentPath = "ImagenesEstudiantes/alumno.png";
     }
 
 }

@@ -41,23 +41,8 @@ namespace Gestor_De_Alumnos
         {
             Task.Run(() =>
             {
-                /*
-                var assembly = Assembly.GetExecutingAssembly();
-                var recursos = assembly.GetManifestResourceNames();
-                String text = "";
-
-                foreach (var r in recursos)
-                {
-                    text += r + "\n";
-                }
-                
-                MessageBox.Show(text, "Recursos", MessageBoxButton.OK, MessageBoxImage.Information);
-                */
-
-
-                //Cargamos unos cuantos datos
+                //Cargamos los datos
                 CreaRutas();
-                //SQLiteDataStudent.ADDListAlumnos(8,35);
             });
         }
 
@@ -67,7 +52,7 @@ namespace Gestor_De_Alumnos
         {
             if (!Directory.Exists(Carpeta)) Directory.CreateDirectory(Carpeta);
 
-            using (Stream? Recurso = Assembly.GetExecutingAssembly().GetManifestResourceStream("Gestor_De_Alumnos.Imagenes_Iconos.DefaultStudentImage.png"))
+            using (Stream? Recurso = Assembly.GetExecutingAssembly().GetManifestResourceStream("Gestor_De_Alumnos.Imagenes_Iconos.alumno.png"))
             {
                 using (FileStream ArchivoCopiado = new FileStream(Ruta, FileMode.Create, FileAccess.Write)) Recurso?.CopyTo(ArchivoCopiado);
             }
@@ -76,7 +61,7 @@ namespace Gestor_De_Alumnos
         private void CreaRutas()
         {
             string StudentImageDirectory = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ImagenesEstudiantes");
-            string RutaStudenDefaultImage = System.IO.Path.Combine(StudentImageDirectory, "DefaultStudentImage.png");
+            string RutaStudenDefaultImage = System.IO.Path.Combine(StudentImageDirectory, "alumno.png");
             CargaImagenEXE(RutaStudenDefaultImage, StudentImageDirectory);
 
             CarpetaDatos = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Datos");
@@ -123,9 +108,33 @@ namespace Gestor_De_Alumnos
             GC.Collect();
         }
 
-        private void Creditos() => MessageBox.Show($"       Creditos:\nDeveloper: ANTHER-X.\nInstagram: https://www.instagram.com/fernandocisneroslemus\nEMail: fernandocisneroslemus@gmail.com\nGitHub: https://github.com/ANTHER-X" +
-                $"\n\n        Tecnologías y lenguajes Usados:" +
-                $"\nC#\nWPF (Windows Presentation Foundation)\nClosedXML\nSQLCipher\nEntityFrameworkCore", "Creditos", MessageBoxButton.OK, MessageBoxImage.Information);
+        private void Creditos()
+        {
+            WndCreditos creditos = new WndCreditos();
+            creditos.ShowDialog();
+            /*
+             MessageBoxResult msg = MessageBox.Show("Cual credito, wnd=Yes, msg=no, cancel=cancel", "Creditos", MessageBoxButton.YesNoCancel);
+            if (msg == MessageBoxResult.Yes)
+            {
+                WndCreditos creditos = new WndCreditos();
+                creditos.ShowDialog();
+            }
+            else if (msg == MessageBoxResult.No)
+            {
+                MessageBox.Show($"       Creditos:\n" +
+                                $"Developer: ANTHER-X.\n" +
+                                $"Instagram: https://www.instagram.com/fernandocisneroslemus\n" +
+                                $"EMail: fernandocisneroslemus@gmail.com\n" +
+                                $"GitHub: https://github.com/ANTHER-X" +
+                                $"\n\n        Tecnologías y lenguajes Usados:" +
+                                $"\nC#" +
+                                $"\nWPF (Windows Presentation Foundation)" +
+                                $"\nClosedXML\n" +
+                                $"SQLCipher\n" +
+                                $"EntityFrameworkCore"
+                                , "Creditos", MessageBoxButton.OK, MessageBoxImage.Information);
+            }*/
+        }
 
         private void LBCreditos_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e) => Creditos();
 

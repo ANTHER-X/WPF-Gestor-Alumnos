@@ -25,7 +25,7 @@ namespace Gestor_De_Alumnos.Window_Add_Alumno
         private Key auxTextKey;
         private byte Turno = 0;
         string FechaNacimeinto = "none";
-        private BitmapImage BMImageDefault = StudentData.CargaImage(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ImagenesEstudiantes", "DefaultStudentImage.png"));
+        private BitmapImage BMImageDefault = StudentData.CargaImage(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, App.RelativeStudentPath));
 
         public WNDAddAlumno(MainWindow Principal)
         {

@@ -5,6 +5,7 @@
  * GitHub: https://github.com/ANTHER-X/WPF-Gestor-Alumnos
  */
 using System.IO;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 using Gestor_De_Alumnos.Guardar_Datos;
@@ -63,20 +64,22 @@ namespace Gestor_De_Alumnos.Terminal
 
             //Portada
             string portada = @"
-              _                          _
-             | |_ ______ ______ ______ _| |_
-           |_   _|______|______|______|_   _|
-            _|_| _____   ____    __  __ |_|
-            | |  / ____| |  _ \  |  \/  | |   
-            | | | |      | |_) | | \  / | |   
-            | | | |      |  _ <  | |\/| | |   
-            | | | |____  | |_) | | |  | | |   
-            | |  \_____| |____/  |_|  |_| |   
-            | |                         | |   
-            |_|_                        |_|   
-            _| |_ ______ ______ ______ _| |_ 
-           |_   _|______|______|______|_   _|
-             |_|                        |_|\";
+.---------------------------------------------.
+|         ____           _                    |
+|        / ___| ___  ___| |_ ___  _ __        |
+|       | |  _ / _ \/ __| __/ _ \| '__|       |
+|       | |_| |  __/\__ \ || (_) | |          |
+|        \____|\___||___/\__\___/|_|          |
+|                   __| | ___                 |
+|                  / _` |/ _ \                |
+|                 | (_| |  __/                |
+|     _    _       \__,_|\___|                |
+|    / \  | |_   _ _ __ ___  _ __   ___  ___  |
+|   / _ \ | | | | | '_ ` _ \| '_ \ / _ \/ __| |
+|  / ___ \| | |_| | | | | | | | | | (_) \__ \ |
+| /_/   \_\_|\__,_|_| |_| |_|_| |_|\___/|___/ |
+|                                             |
+'---------------------------------------------'";
             bool salir = false;
             byte opc = 4;
             string AlumnoIndex = "none";
@@ -85,8 +88,19 @@ namespace Gestor_De_Alumnos.Terminal
             while(salir == false)
             {
                 Console.WriteLine(portada);
-                Console.Write($"V: 1.0.0\nSeleccione una opcion:\nManejar Tu DataBase: 1\nGenerar Exel De Alumno (Al IndexList = {AlumnoIndex}): 2\n" +
-                    $"Generar Archivo Excel con un grupo: 3\nGenerar Archivo Excel de todos los Alumnos: 4\nCrear Archivo TXT de Alumno (index -> ={AlumnoIndex}): 5\nVer la DataBase: 6\nVer Cantidad de Alumnos: 7\nSalir: 8\nOpcion: ");
+                Console.Write($"Version: {Assembly.GetExecutingAssembly().GetName().Version}\n" +
+                              $"Seleccione una opcion:\n" +
+                              $"Manejar Tu DataBase: 1\n" +
+                              $"Generar Exel De Alumno (Al IndexList): 2\n" +
+                              $"Generar Archivo Excel con un grupo: 3\n" +
+                              $"Generar Archivo Excel de todos los Alumnos: 4\n" +
+                              $"Crear Archivo TXT de Alumno: 5\n" +
+                              $"Crear Archivo TXT de un grupo: 6\n" +
+                              $"Crear Archivo TXT de todos los Alumnos: 7\n" +
+                              $"Ver la DataBase: 8\n" +
+                              $"Ver Cantidad de Alumnos: 9\n" +
+                              $"Salir: 10\n" +
+                              $"Opcion: ");
                 
                 try
                 {
@@ -119,7 +133,7 @@ namespace Gestor_De_Alumnos.Terminal
                     case 3:
                         {
                             short grupo = SeleccionaGrupo();
-                            if (Al != null) CrearExcel(Al, grupo);
+                            CrearExcel(null, grupo);
                             break;
                         }
                     //crear Excel con todos los Alumnos
@@ -131,23 +145,37 @@ namespace Gestor_De_Alumnos.Terminal
                     //Crear archivo TXT con los datos del Alumno
                     case 5:
                         {
-                            CreaTXTunAlumno(Al);
+                            Al = SeleccionaAlumno();
+                            CreaTXTAlumnos(Al);
+                            break;
+                        }
+                    // Crear Achivos TXT con un grupo
+                    case 6:
+                        {
+                            short grupo = SeleccionaGrupo();
+                            CreaTXTAlumnos(null, grupo);
+                            break;
+                        }
+                    // Crear Achivos TXT con todos los Alumnos
+                    case 7:
+                        {
+                            CreaTXTAlumnos(null, -1, true);
                             break;
                         }
                     //Ver la DataBase
-                    case 6:
+                    case 8:
                         {
                             VerDataBase();
                             break;
                         }
-                    case 7:
+                    case 9:
                         {
                             Console.WriteLine($"{SQLiteDataStudent.ReturnCantAlumnos()}\nPrecione una tecla para regresar...");
                             Console.ReadKey();
                             break;
                         }
                     //Salir del bucle
-                    case 8:
+                    case 10:
                         {
                             salir = true;
                             break;
@@ -155,7 +183,7 @@ namespace Gestor_De_Alumnos.Terminal
                     default:
                         {
                             Console.WriteLine("Error, intente de nuevo...");
-                            Thread.Sleep(2000);
+                            Thread.Sleep(1500);
                             break;
                         }
                 }
@@ -165,7 +193,7 @@ namespace Gestor_De_Alumnos.Terminal
 
             //Fin de la Consola
             Console.WriteLine("Espero no se haya roto nada :v.\nSaliendo...");
-            Thread.Sleep(3500);
+            Thread.Sleep(2500);
             FreeConsole();
         }
 
@@ -191,8 +219,8 @@ namespace Gestor_De_Alumnos.Terminal
 
             if(Alumnos.Count == 0)
             {
-                Console.Write("No hay alumnos\nRegresando...");
-                Thread.Sleep(2500);
+                Console.Write("No hay alumnos\nRegresando...\n");
+                Thread.Sleep(1500);
                 return null;
             }
 
@@ -216,14 +244,14 @@ namespace Gestor_De_Alumnos.Terminal
                 {
                     Alumnos[opc].Mostrarse();
                 }
-                Console.Write($"Alumno ({opc}) Seleccionado.\nRegresando...");
-                Thread.Sleep(3000);
+                Console.Write($"Alumno ({opc}) Seleccionado.\n");
+                Thread.Sleep(2000);
                 return Alumnos[opc];
             }
             catch
             {
                 Console.Write("No selecciono nada, sera el usuario 0 por defecto.\nRegresando...");
-                Thread.Sleep(2500);
+                Thread.Sleep(1500);
                 return Alumnos[0];
             }
         }
@@ -251,62 +279,64 @@ namespace Gestor_De_Alumnos.Terminal
                 if (opc > Grupos.Count) opc = Grupos.Count;
 
                 Console.WriteLine($"Ah eleguido el grupo -{Grupos[opc - 1]}-");
-                Thread.Sleep(3000);
+                Thread.Sleep(2000);
                 return Grupos[opc - 1];
             }
             catch
             {
                 Console.WriteLine($"Error, Datos no validos, seleccion por defecto {Grupos[0]}");
-                Thread.Sleep(3000);
+                Thread.Sleep(2000);
                 return Grupos[0];
             }
         }
 
         //CREADOR DE TXT DE UN ALUMNO
-        private void CreaTXTunAlumno(Alumno? auxAl)
+        private void CreaTXTAlumnos(Alumno? auxAl, short Grupo = -1, bool all = false)
         {
-            if(auxAl != null)
+            if (auxAl == null && Grupo == -1 && !all) return;
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Datos", $"{((auxAl != null) ? (auxAl.name) : ((Grupo == -1) ? ("AllAlumnos") : (Grupo)))}.txt");
+            char opc;
+            Console.Write($"Quiere eleguir ruta (s/N): ");
+            try
             {
-                string path;
-                char opc;
-                Console.Write($"Quiere eleguir ruta (S/N): ");
-                try
+                opc = (char.TryParse(Console.ReadLine(), out _)) ? (char.Parse(Console.ReadLine())) : ('N');
+
+                if (opc == 'S' || opc == 's')
                 {
-                    opc = char.Parse(Console.ReadLine() ?? "0");
+                    OpenFolderDialog ofld = new OpenFolderDialog();
+                    ofld.Title = "Selecciona Carpeta";
 
-                    if(opc == 'S' || opc == 's')
+                    if (ofld.ShowDialog() == true)
                     {
-                        OpenFolderDialog ofld = new OpenFolderDialog();
-                        ofld.Title = "Selecciona Carpeta";
-
-                        if(ofld.ShowDialog() == true)
-                        {
-                            path = Path.Combine(ofld.FolderName, $"{auxAl.name}.txt");
-                            StudentData.CreaTXTAlumno(auxAl, path);
-                        }
-                        else
-                        {
-                            path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Datos", $"{auxAl.name}.txt");
-                            StudentData.CreaTXTAlumno(auxAl, path);
-                        }
+                        path = Path.Combine(ofld.FolderName, $"{ ((auxAl != null) ? (auxAl.name) : ( (Grupo == -1)? ("AllAlumnos"):(Grupo) )) }.txt");
+                        if (auxAl != null) StudentData.CreaTXTAlumno(auxAl, path);
+                        else if (Grupo != -1) StudentData.CreaTXTGrupoAlumnosAllAlumnos(SQLiteDataStudent.ExtraeAlumnosPorGrupo(Grupo), path);
+                        else StudentData.CreaTXTGrupoAlumnosAllAlumnos(SQLiteDataStudent.AllAlumnos(false), path);
                     }
                     else
                     {
-                        path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Datos", $"{auxAl.name}.txt");
-                        StudentData.CreaTXTAlumno(auxAl, path);
+                        if (auxAl != null) StudentData.CreaTXTAlumno(auxAl, path);
+                        else if (Grupo != -1) StudentData.CreaTXTGrupoAlumnosAllAlumnos(SQLiteDataStudent.ExtraeAlumnosPorGrupo(Grupo), path);
+                        else StudentData.CreaTXTGrupoAlumnosAllAlumnos(SQLiteDataStudent.AllAlumnos(false), path);
                     }
-
-                    if (File.Exists(path)) Console.WriteLine("Archivo creado con exito");
-                    else Console.WriteLine("ups... Algo salio mal. Error {Archivo no creado}");
-
-                    Console.Write("Regresando...");
-                    Thread.Sleep(3500);
                 }
-                catch
+                else
                 {
-                    Console.WriteLine("Opcion erronea\nRegresando");
-                    Thread.Sleep(3000);
+                    if (auxAl != null) StudentData.CreaTXTAlumno(auxAl, path);
+                    else if (Grupo != -1) StudentData.CreaTXTGrupoAlumnosAllAlumnos(SQLiteDataStudent.ExtraeAlumnosPorGrupo(Grupo), path);
+                    else StudentData.CreaTXTGrupoAlumnosAllAlumnos(SQLiteDataStudent.AllAlumnos(false), path);
                 }
+
+                if (File.Exists(path)) Console.WriteLine("Archivo creado con exito");
+                else Console.WriteLine("ups... Algo salio mal. Error {Archivo no creado}");
+
+                Console.Write("Regresando...");
+                Thread.Sleep(2500);
+            }
+            catch
+            {
+                Console.WriteLine("Opcion erronea\nRegresando");
+                Thread.Sleep(2000);
             }
 
         }
@@ -318,8 +348,8 @@ namespace Gestor_De_Alumnos.Terminal
             char opc;
             if (auxAl == null && AllALumnos == false && anGroup == -1) return;
 
-            Console.Write($"Quiere Eleguir la ruta del archivo? (S/N): ");
-            opc = char.Parse(Console.ReadLine() ?? "0");
+            Console.Write($"Quiere Eleguir la ruta del archivo? (s/N): ");
+            opc = (char.TryParse(Console.ReadLine(), out _)) ? (char.Parse(Console.ReadLine())) : ('N');
             if(opc == 'S' || opc == 's')
             {
                 OpenFolderDialog ofld = new OpenFolderDialog();
@@ -333,7 +363,7 @@ namespace Gestor_De_Alumnos.Terminal
                         return;
                     }
                     if (!AllALumnos && auxAl != null) ArchivosExcel.ExcelAlumno(Path.Combine(ofld.FolderName, $"{auxAl.name}.xlsx"), auxAl);
-                    else ArchivosExcel.AllAlumnos(Path.Combine(ofld.FolderName, $"Alumnos_Cobaem.xlsx"), SQLiteDataStudent.ExtraeAllAlumnosExcel());
+                    else ArchivosExcel.AllAlumnos(Path.Combine(ofld.FolderName, $"All_Alumnos_APP.xlsx"), SQLiteDataStudent.ExtraeAllAlumnosExcel());
                 }
 
             }
@@ -345,7 +375,7 @@ namespace Gestor_De_Alumnos.Terminal
                     return;
                 }
                     if (!AllALumnos && auxAl != null) ArchivosExcel.ExcelAlumno(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Datos", $"{auxAl.name}.xlsx"), auxAl);
-                    else ArchivosExcel.AllAlumnos(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Datos", "Alumnos_Cobaem.xlsx"), SQLiteDataStudent.ExtraeAllAlumnosExcel());
+                    else ArchivosExcel.AllAlumnos(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Datos", "All_Alumnos_APP.xlsx"), SQLiteDataStudent.ExtraeAllAlumnosExcel());
             }
         }
 

@@ -11,9 +11,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Gestor_De_Alumnos"
         ResizeMode="CanMinimize"
-        mc:Ignorable="d"
+        mc:Ignorable="d" 
         WindowStartupLocation="CenterScreen"
-        Title="Gestor De Alumnos" Height="394" Width="544" Icon="/Imagenes-Iconos/Orquidea.ico" Loaded="Window_Loaded">
+        Title="Gestor De Alumnos" Height="394" Width="544"  Loaded="Window_Loaded">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -27,19 +27,18 @@
     <Window.Background>
         <RadialGradientBrush>
             <GradientStop Color="#FFFC6DFC"/>
-            <GradientStop Color="#FF6D376D" Offset="2.5"/>
-            <GradientStop Color="#FFB9B8B9" Offset="0.6"/>
+            <GradientStop Color="#FF66C3C6" Offset="1.5"/>
         </RadialGradientBrush>
     </Window.Background>
 
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Imagenes-Iconos/White-Rose.png" Stretch="Uniform"/>
+            <ImageBrush ImageSource="/Imagenes-Iconos/rosa.png" Stretch="Uniform"/>
         </Grid.Background>
         <Button Name="BTNAddAlumno" Style="{StaticResource BotonInicio}" Click="BTNAddAlumno_Click" Content="Add Alumno" HorizontalAlignment="Left" Margin="22,189,0,0" VerticalAlignment="Top" Height="42" Width="105"/>
         <Button Name="VerAlumnos" Style="{StaticResource BotonInicio}" Content="Ver Alumnos" Click="VerAlumnos_Click"  HorizontalAlignment="Left" Margin="22,105,0,0" VerticalAlignment="Top" Height="42" Width="105"/>
         <Button Name="BTNNotas" Content="Notas" Style="{StaticResource BotonInicio}" FontSize="16" Click="BTNNotas_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="414,189,0,0" Height="42" Width="105"/>
-        <Label Name="LBFecha" Content="Fecha: " HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="22,10,0,0" VerticalAlignment="Top" Height="30" Width="237" FontSize="14" FontStyle="Italic"/>
+        <Label Name="LBFecha" Content="Fecha: " HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="22,10,0,0" VerticalAlignment="Top" Height="30" Width="237" FontSize="14" FontStyle="Italic"/>
         <Button Name="BTNSalir" Content="Salir" Click="BTNSalir_Click" Style="{StaticResource BotonInicio}" FontSize="16" HorizontalAlignment="Left" Margin="414,105,0,0" VerticalAlignment="Top" Height="42" Width="105"/>
         <Label Name="LBCreditos" Content="Creditos (click)" Foreground="#FF544E4E" MouseDoubleClick="LBCreditos_MouseDoubleClick" HorizontalAlignment="Left" Margin="438,321,0,0" VerticalAlignment="Top"/>
 

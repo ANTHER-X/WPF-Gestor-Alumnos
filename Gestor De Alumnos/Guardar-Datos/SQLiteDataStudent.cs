@@ -171,7 +171,7 @@ namespace Gestor_De_Alumnos.Guardar_Datos
                         matriculasTemporales.Add(matricula);
 
                         Alumno al = new Alumno($"Alumno {j + 1}", $"Apellidos {j + 1}", "01/01/2000", "4412345678", short.Parse((i + 1).ToString()), matricula.ToString(), "Matutino", "NONE");
-                        StudentData.CopiaImagen(al, System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ImagenesEstudiantes", "DefaultStudentImage.png"), AppDomain.CurrentDomain.BaseDirectory, "ImagenesEstudiantes");
+                        StudentData.CopiaImagen(al, System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, App.RelativeStudentPath), AppDomain.CurrentDomain.BaseDirectory, "ImagenesEstudiantes");
 
                         try
                         {

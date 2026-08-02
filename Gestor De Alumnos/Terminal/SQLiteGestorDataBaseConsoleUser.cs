@@ -95,38 +95,34 @@ namespace Gestor_De_Alumnos.Terminal
         }
 
 
+
+        // Par poder borrar la DB que se ah creado
         static private void BorraDataBase()
         {
             /*Verificamos que la database exista*/
-            string patdb = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Datos/Data.rtadb");
-            string pathDataBase = "Datos/UserAlumnoData.db";
+            string patdb = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Datos/Data.txt"); // Archivo donde esta el path de la DB
+            string pathDataBase = "Datos/UserAlumnoData.db"; // Path base
             
             if (File.Exists(patdb))
             {
                 using (StreamReader SW = new StreamReader(new FileStream(patdb, FileMode.Open, FileAccess.Read)))
-                {
-                    pathDataBase = SW.ReadToEnd();
-                }
+                    pathDataBase = SW.ReadToEnd(); // Si existe la ruta, la sacamos
             }
 
             if (!File.Exists(pathDataBase))
             {
                 /*Si no existe le decimos al user que no existe*/
-                Console.WriteLine("Lo siento, no tiene database Creada, Quiere Crear una (s/n)");
+                Console.WriteLine("Lo siento, no tiene database Creada, Quiere Crear una (s/N)");
                 char resp = char.Parse(Console.ReadLine() ?? "n");
-                if (resp == 'n' || resp == 's')
-                {
-                    ConsoleCreateDB();
-                }
-
+                if (resp == 'S' && resp == 's') ConsoleCreateDB();
                 return;
             }
 
             //Preguntamos si en serio quiere eliminar la base de datos
-            Console.Write("En serio quiere borrar su database? (s/n): ");
+            Console.Write("En seguro que quiere borrar su database? (s/N): ");
             char opcb = char.Parse(Console.ReadLine() ?? "n");
 
-            if (opcb != 'S' && opcb != 's') return;
+            if (opcb == 'N' || opcb == 'n') return;
 
             //si si quiere borrarla le pedimos la password
             Console.Write("Escriba Su Password: ");
@@ -142,6 +138,7 @@ namespace Gestor_De_Alumnos.Terminal
                     try
                     {
                         int opSimple = db.DBAlumno.Count();
+                        Console.WriteLine("Password Correcta.");
                     }
                     catch
                     {
@@ -171,22 +168,26 @@ namespace Gestor_De_Alumnos.Terminal
         }
 
 
+        // Para la creacion de la DB
         static private void ConsoleCreateDB()
         {
-            if(File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Datos/Data.rtadb")))
+            // Verificamos si ya creo o no la DB
+            if(File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Datos/Data.txt")))
             {
                 Console.WriteLine("Ya creo su database\nPuede Borrala para volver a Crearla");
                 Console.ReadKey();
                 return;
             }
-            Console.Write("Quiere eleguir la ruta (s/n): ");
 
-            char DBopc = char.Parse(Console.ReadLine() ?? "n");
+            // Si no, comenzamos el setting
+            Console.Write("Quiere eleguir la Carpeta? (s/N): ");
+            char DBopc = (char.TryParse(Console.ReadLine(), out _)) ? (char.Parse(Console.ReadLine())) : ('N');
 
-            OpenFolderDialog ofd = new OpenFolderDialog();
+            // Verificamos la ruta de la nueva DB
             string ruta;
             if (DBopc == 'S' || DBopc == 's')
             {
+                OpenFolderDialog ofd = new OpenFolderDialog();
                 ofd.Title = "Selecciona Carpeta";
 
                 if (ofd.ShowDialog() == true) ruta = Path.Combine(ofd.FolderName, "UserAlumnoData.db");
@@ -200,21 +201,23 @@ namespace Gestor_De_Alumnos.Terminal
             //Pedimos una contrasenia
             while (true)
             {
-                Console.Write("Escriba su contrasenia RECUERDELA ya que NO SABEMOS CUAL ES.\nPassword: ");
+                Console.Write("Escriba su Password RECUERDELA ya que NO SABEMOS CUAL ES.\nPassword: ");
                 Password = Console.ReadLine();
                 if (!string.IsNullOrWhiteSpace(Password)) break;
             }
 
-            //si elije una ruta distinta a la por defecto creamos un
+            //si elije una ruta distinta a la por defecto creamos el archivo que tendra la ruta
             if (ruta != "Datos/UserAlumnoData.db")
             {
-                using (StreamWriter SW = new StreamWriter(new FileStream(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Datos/Data.rtadb"), FileMode.Create, FileAccess.Write)))
-                {
+                using (StreamWriter SW = new StreamWriter(new FileStream(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Datos/Data.txt"), FileMode.Create, FileAccess.Write)))
                     SW.Write(ruta);
-                }
             }
 
-            using (DBContextUser db = new DBContextUser(ruta, Password)) db.Database.EnsureCreated();
+            using (DBContextUser db = new DBContextUser(ruta, Password))
+            {
+                db.Database.EnsureCreated();
+                db.Dispose();
+            }
 
             if (File.Exists(ruta)) Console.WriteLine("DataBase Creada...");
             else Console.WriteLine("NO se pudo CREAR la DataBase...");
@@ -298,7 +301,12 @@ namespace Gestor_De_Alumnos.Terminal
             {
 
                 Console.Clear();
-                Console.Write("Creador de TXT\nCrear TXT de un alumno: 1\nCrear TXT de un Grupo: 2\nCrear TXT de todos los Alumnos: 3\nSalir: 4\nOpcion: ");
+                Console.Write("Creador de TXT\n" +
+                              "Crear TXT de un alumno: 1\n" +
+                              "Crear TXT de un Grupo: 2\n" +
+                              "Crear TXT de todos los Alumnos: 3\n" +
+                              "Salir: 4\n" +
+                              "Opcion: ");
                 short opc = byte.Parse(Console.ReadLine() ?? "0");
                
                 if (opc > 0 && opc <5)
@@ -359,11 +367,19 @@ namespace Gestor_De_Alumnos.Terminal
             }
             Console.Write("Opcion: ");
 
-            opcDelete = int.Parse(Console.ReadLine() ?? "-1");
-            
-            if (opcDelete < 1) opcDelete = 1;
-            if (opcDelete > auxAl.Count()) opcDelete = auxAl.Count;
-            return auxAl[opcDelete-1];
+            try
+            {
+                opcDelete = int.Parse(Console.ReadLine() ?? "-1");
+
+                if (opcDelete < 1) opcDelete = 1;
+                if (opcDelete > auxAl.Count()) opcDelete = auxAl.Count;
+                return auxAl[opcDelete - 1];
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Datos Erroneos");
+                return null;
+            }
         }
 
 
@@ -378,17 +394,25 @@ namespace Gestor_De_Alumnos.Terminal
                 Console.WriteLine("Algo Falló, intente despues...");
                 db.Dispose();
                 Thread.Sleep(4000);
+
                 return;
             }
-
             //si se puede acceder y desencriptar abrimos otro menu
             while (true)
             {
                 Console.Clear();
 
-                Console.Write("ENTRASTE A TU DATABASE.\nVer Cant. Alumnos: 1\nAgrega Alumno: 2\nVer Alumnos: 3\nEliminar Alumno: 4\nDar Alumno a DBMain: 5\n" +
-                    "Tomar Alumno de DBMain: 6\nCrear TXT Alumno(s): 7\nRegresar: 8\nOpcion: ");
-                short opc = short.Parse(Console.ReadLine() ?? "-1");
+                Console.Write("ENTRASTE A TU DATABASE.\n" +
+                              "Ver Cant. Alumnos: 1\n" +
+                              "Agrega Alumno: 2\n" +
+                              "Ver Alumnos: 3\n" +
+                              "Eliminar Alumno: 4\n" +
+                              "Dar Alumno a DBMain: 5\n" +
+                              "Tomar Alumno de DBMain: 6\n" +
+                              "Crear TXT Alumno(s): 7\n" +
+                              "Regresar: 8\n" +
+                              "Opcion: ");
+                short opc = ((short.TryParse(Console.ReadLine(), out _)) ? (short.Parse(Console.ReadLine())) : ((short)-1));
 
                 if (opc != -1)
                 {
@@ -397,7 +421,8 @@ namespace Gestor_De_Alumnos.Terminal
                         //damos la cantidad de Alumnos
                         case 1:
                             {
-                                Console.Write(db.DBAlumno.Count());
+                                Console.Write(db.DBAlumno.Count() +
+                                    "\nPreciona una tecla para regresar");
                                 Console.ReadKey();
                                 break;
                             }
@@ -441,7 +466,6 @@ namespace Gestor_De_Alumnos.Terminal
                                 Alumno? auxal = ExtraeAlumno(db);
                                 if (auxal == null) break;
 
-
                                 SQLiteDataStudent.AddRemoveUpdateAlumno(auxal);
                                 Console.Write("Anidado");
                                 Thread.Sleep(2500);
@@ -477,7 +501,7 @@ namespace Gestor_De_Alumnos.Terminal
                                 Thread.Sleep(2500);
                                 break;
                             }
-                        //CrearExcel TXT de los Alumnos
+                        //Crear TXT de los Alumnos
                         case 7:
                             {
                                 CreaTXTAlumnos(db);
@@ -495,12 +519,18 @@ namespace Gestor_De_Alumnos.Terminal
             }
         }
 
+        // Aqui vamos a manejar las opciones de las DB externa que se creara
         static public void ManejaDataBaseUser()
         {
             while (true)
             {
                 Console.Clear();
-                Console.Write("Selecciona Opcion:\nCreaDataBase: 1\nEntrar a DataBase: 2\nBorrar DataBase: 3\nSalir 4\nOpcion: ");
+                Console.Write("Selecciona Opcion:\n" +
+                              "CreaDataBase: 1\n" +
+                              "Entrar a DataBase: 2\n" +
+                              "Borrar DataBase: 3\n" +
+                              "Salir 4\n" +
+                              "Opcion: ");
                 try
                 {
                     short opc = short.Parse(Console.ReadLine() ?? "0");
@@ -521,20 +551,20 @@ namespace Gestor_De_Alumnos.Terminal
                                 Mostrar alumnos, mostrar alumno especifico, mostrar grupos, seleccionar grupo, ver alumnos
                                 solo de grupo, generar TXT de los alumnos... y Ya*/
 
-                                string path1 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Datos/Data.rtadb");
-                                string path2;
-                                if (File.Exists(path1))
+                                string pathDBRuta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Datos/Data.txt");
+                                string pathDB;
+                                if (File.Exists(pathDBRuta))
                                 {
-                                    using (StreamReader SR = new StreamReader(new FileStream(path1, FileMode.Open, FileAccess.Read)))
+                                    using (StreamReader SR = new StreamReader(new FileStream(pathDBRuta, FileMode.Open, FileAccess.Read)))
                                     {
-                                        path2 = SR.ReadToEnd();
+                                        pathDB = SR.ReadToEnd();
                                     }
                                 }
-                                else path2 = "Datos/UserAlumnoData.db";
+                                else pathDB = "Datos/UserAlumnoData.db";
 
-                                if (!File.Exists(path2))
+                                if (!File.Exists(pathDB))
                                 {
-                                    Console.Write("Sin DataBase, Quiere Crearla? (S/N): ");
+                                    Console.Write("Sin DataBase, Quiere Crearla? (s/N): ");
                                     if (Console.ReadLine() == "S" || Console.ReadLine() == "s")
                                     {
                                         ConsoleCreateDB();
@@ -545,7 +575,7 @@ namespace Gestor_De_Alumnos.Terminal
                                 Console.Write("Ingrese su Password: ");
                                 string? Pass = Console.ReadLine();
 
-                                if(Pass != null) ManejaDB(path2, Pass);
+                                if(Pass != null) ManejaDB(pathDB, Pass);
                                 break;
                             }
                         //Borrar la database

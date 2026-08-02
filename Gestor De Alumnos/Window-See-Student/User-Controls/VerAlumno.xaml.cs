@@ -37,7 +37,8 @@ namespace Gestor_De_Alumnos.Window_See_Student.User_Controls
             LBHServ.Content = al.horasServicioSocial;
             LBProf.Content = al.profServSoc;
 
-            IMGAlumno.Source = StudentData.CargaImage(al.RutaImagen);
+            string path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, al.RutaImagen);
+            IMGAlumno.Source = StudentData.CargaImage((System.IO.File.Exists(path)) ? (al.RutaImagen) : (App.RelativeStudentPath));
         }
 
         public VerAlumno(MostrarDatos WNDMain, Alumno Al)

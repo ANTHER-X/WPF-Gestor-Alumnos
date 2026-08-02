@@ -122,8 +122,8 @@
     <Style TargetType="Button" x:Key="BotonInicio">
 
         <!-- Propiedades del boton -->
-        <Setter Property="Background" Value="#9DA2A8"/>
-        <Setter Property="BorderBrush" Value="#4E5257"/>
+        <Setter Property="Background" Value="#FF24CBCB"/>
+        <Setter Property="BorderBrush" Value="#FFA38989"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontFamily" Value="Microsoft YaHei"/>
         <Setter Property="Foreground" Value="Black"/>
@@ -150,10 +150,10 @@
                     <ControlTemplate.Triggers>
                         <!-- Cambiamos un poco el fondo del boton en estos eventos-->
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#ADB9C7"/>
+                            <Setter Property="Background" Value="#FF1586B4"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Background" Value="#5C6066"/>
+                            <Setter Property="Background" Value="#FF98714E"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                     
@@ -238,7 +238,7 @@
         </Setter>
 
     </Style>
-    
+
     <!-- Degradado color Pastel -->
     <Style TargetType="Button" x:Key="ButtonDegradadoPastelColor">
         <!-- Propiedades basicas -->
@@ -265,7 +265,7 @@
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
-        
+
         <!-- Aplicacion de los fondos default asi como el que pasa si pasamos el cursor o precionamos -->
         <Setter Property="Template">
             <Setter.Value>
@@ -277,7 +277,7 @@
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="3.5">
-                        
+
                         <ContentPresenter
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
@@ -289,7 +289,7 @@
 
                         <!-- Aplicacion al pasar el cursor -->
                         <Trigger Property="IsMouseOver"  Value="True">
-                            
+
                             <!-- Aligueramos el color del fondo-->
                             <Setter Property="Background">
                                 <Setter.Value>
@@ -338,12 +338,201 @@
                         </Trigger>
 
                     </ControlTemplate.Triggers>
-                    
+
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
 
     </Style>
+
+
+
+
+    <!-- Desing de botones para los creditos -->
+    <Style TargetType="Button" x:Key="BTNCreditos">
+        <!-- Propiedades basicas -->
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontFamily" Value="Baskerville Old Face"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="BorderThickness" Value="1.5"/>
+
+        <!-- Gradiente del fondo de color -->
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0.1,0.6" EndPoint="1.2,0.4">
+                    <GradientStop Color="#FFC09A53"/>
+                    <GradientStop Color="#FF9EDF61" Offset="0.8"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="BorderBrush">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0.3,0.6">
+                    <GradientStop Color="#FFA68A8D"/>
+                    <GradientStop Color="#FF9223EB" Offset="1.8"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+
+        <!-- Aplicacion de los fondos default asi como el que pasa si pasamos el cursor o precionamos -->
+        <Setter Property="Template">
+            <Setter.Value>
+                <!-- Especificamos que es para un boton-->
+                <ControlTemplate TargetType="Button">
+
+                    <!-- Aplicamos los fondos y bordes default, asi como el contenido del boton-->
+                    <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="10">
+
+                        <ContentPresenter
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            RecognizesAccessKey="True"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+
+                        <!-- Aplicacion al pasar el cursor -->
+                        <Trigger Property="IsMouseOver"  Value="True">
+
+                            <!-- Aligueramos el color del fondo-->
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0.1,0.6" EndPoint="1.2,0.4">
+                                        <GradientStop Color="#FFE6AB3D"/>
+                                        <GradientStop Color="#FF7CF609" Offset="0.8"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+
+                            <!-- Hacemos un poco mas fuerte el borde -->
+                            <Setter Property="BorderBrush">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0.3,0.6">
+                                        <GradientStop Color="#FFC38CE3"/>
+                                        <GradientStop Color="#FF08D9BB" Offset="1.8"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+
+                        </Trigger>
+
+
+                        <!-- Aplicacion al precionar -->
+                        <Trigger Property="IsPressed" Value="True">
+
+                            <!-- Aligueramos el color del fondo-->
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0.1,0.6" EndPoint="1.2,0.4">
+                                        <GradientStop Color="#FFB28F4D"/>
+                                        <GradientStop Color="#FF3B9824" Offset="0.8"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+
+                            <!-- Hacemos un poco mas fuerte el borde -->
+                            <Setter Property="BorderBrush">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0.3,0.6">
+                                        <GradientStop Color="#FF7B353D"/>
+                                        <GradientStop Color="#FF108193" Offset="1.8"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+    <!-- Desing para los botones de Mail -->
+    <Style TargetType="Button" x:Key="BTNCreditosMail">
+        <!-- Propiedades basicas -->
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="Baskerville Old Face"/>
+        <Setter Property="Padding" Value="8"/>
+        <Setter Property="BorderThickness" Value="1"/>
+
+        <!-- Gradiente del fondo de color -->
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0.1,0.6" EndPoint="1.2,0.4">
+                    <GradientStop Color="#FFA4A19B"/>
+                    <GradientStop Color="#FFAFE6A5" Offset="0.8"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="BorderBrush">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="1,0.4" EndPoint="0.2,0.8">
+                    <GradientStop Color="#FF8E0FA0"/>
+                    <GradientStop Color="#FFA76624" Offset="1.2"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+
+        <!-- Aplicacion de los fondos default asi como el que pasa si pasamos el cursor o precionamos -->
+        <Setter Property="Template">
+            <Setter.Value>
+                <!-- Especificamos que es para un boton-->
+                <ControlTemplate TargetType="Button">
+
+                    <!-- Aplicamos los fondos y bordes default, asi como el contenido del boton-->
+                    <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="10">
+
+                        <ContentPresenter
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            RecognizesAccessKey="True"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <!-- Aplicacion al precionar -->
+                        <Trigger Property="IsPressed" Value="True">
+
+                            <!-- Agregamos el color del fondo-->
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0.1,0.6" EndPoint="1.2,0.4">
+                                        <GradientStop Color="#FF836D40"/>
+                                        <GradientStop Color="#FF2D6752" Offset="0.8"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+
+                            <!-- Hacemos un poco mas fuerte el borde -->
+                            <Setter Property="BorderBrush">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="1,0.4" EndPoint="0.2,0.8">
+                                        <GradientStop Color="#FF763FB1"/>
+                                        <GradientStop Color="#FF4E2D0B" Offset="1.2"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
 
 </ResourceDictionary>
     
